@@ -1,0 +1,49 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="container">
+  <div class="row">
+    <h1>List of Drivers</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Driver number</th>
+          <th scope="col">Name</th>
+          <th scope="col">Age</th>
+          <th scope="col">Team</th>
+          <th scope="col">Total points</th>
+          {% if session['isLoggedin'] and session['role'] == 'admin' %}
+          <th scope="col">Action</th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for driver in drivers %}
+        <tr>
+          <td>{{ driver.id }}</td>
+          <td>
+            <a href="/view_driver.html?driver_id={{ driver.id }}">
+              {{ driver.name }}
+            </a>
+          </td>
+          <td>{{ driver.age }}</td>
+          <td>{{ driver.team_name }}</td>
+          <td>{{ driver.total_points }}</td>
+          {% if session['isLoggedin'] and session['role'] == 'admin' %}
+          <td>
+            <form action="/delete_driver.html" method="POST">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+              <input type="hidden" name="driver_id" value="{{driver.id}}"/>
+              <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+            </form>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

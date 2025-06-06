@@ -1,0 +1,41 @@
+{% extends 'layout.html' %} 
+{% block content %}
+<div class="container">
+  <div class="row">
+    <h1>List of Teams</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th>Team</th>
+          <th>Total Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for team in teams %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>
+            <span style="display: inline-flex; align-items: center;">
+              <img 
+                src="{{ url_for('static', filename='images/' + team['team_name'] + '.jpeg') }}" 
+                alt="{{ team['team_name'] }} logo"
+                style="height:25px; width:auto; margin-right:8px;"
+                onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/' + team['team_name'] + '.png') }}';"
+              >
+              {{ team["team_name"] }}
+            </span>
+          </td>
+          <td>{{ team["points"] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

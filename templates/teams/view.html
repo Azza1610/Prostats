@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <h1>
+      {{ team["team_name"] }}
+      <img src="{{ url_for('static', filename='images/' + team['team_name'] + '.png') }}" alt="{{ team['team_name'] }} logo" style="height:10px; margin-left: 15px;">
+    </h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <!-- Team Info -->
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Team Info</h5>
+          <ul>
+            <li>Team ID: {{ team["id"] }}</li>
+            <li>Team Name: {{ team["team_name"] }}</li>
+            <li>Total Points: {{ team["points"] }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Races Table -->
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Races</h5>
+          {% if races %}
+          <table class="table table-sm table-bordered">
+            <thead>
+              <tr>
+                <th>Race Name</th>
+                <th>Year</th>
+                <th>Position</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for race in races %}
+              <tr>
+                <td>{{ race["race_name"] }}</td>
+                <td>{{ race["year"] }}</td>
+                <td>{{ race["position"] }}</td>
+                <td>{{ race["points"] }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <p>No Races</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

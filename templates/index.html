@@ -1,11 +1,56 @@
-{% extends 'layout.html' %}
-{% block content %}
+{% extends 'layout.html' %} {% block content %}
 <div class="container">
-    <div class="row">
-        <h1 class="display-1">Hello world!</h1>
+  <div class="d-flex justify-content-center px-5 py-5 my-5 align-items-center">
+    <div class="col-lg-6">
+      <form method="post" action="/">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <input
+          class="form-control form-control-lg"
+          type="text"
+          placeholder="Enter Search"
+          aria-label=".form-control-lg"
+          name="query"
+        />
+        <div class="d-flex justify-content-center mt-3">
+          <button type="submit" class="btn btn-primary mb-3">Search</button>
+        </div>
+      </form>
     </div>
-    <div class="row">
-
+  </div>
+  <div class="row">
+    {% if drivers %}
+    <div class ="card col-6">
+      <div class="card-body">
+      <h4>Drivers</h4>
+      <ul>
+        {% for d in drivers %}
+          <li>
+            <a href="/view_driver.html?driver_id={{ d.id }}">
+              {{d['name']}}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
+  </div>  
+    {% endif %}
+   
+  {% if races %}
+  <div class ="card col-6">
+    <div class="card-body">
+    <h4>Races</h4>
+    <ul>
+      {% for r in races %}
+        <li>
+          <a href="/race_result.html?race_id={{r['id']}}" >
+            {{r['race_name']}}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+  {% endif %}
+  </div>
 </div>
 {% endblock %}

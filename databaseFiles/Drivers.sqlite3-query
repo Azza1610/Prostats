@@ -1,0 +1,25 @@
+-- database: ./database.db
+
+INSERT INTO drivers (id, name, age, team_id) VALUES
+(1, 'Max Verstappen', 26, 1),
+(2, 'Logan Sargeant', 23, 9),
+(3, 'Daniel Ricciardo', 34, 8),
+(4, 'Lando Norris', 24, 3),
+(10, 'Pierre Gasly', 28, 6),
+(11, 'Sergio Perez', 34, 1),
+(14, 'Fernando Alonso', 42, 5),
+(16, 'Charles Leclerc', 26, 2),
+(18, 'Lance Stroll', 25, 5),
+(20, 'Kevin Magnussen', 31, 7),
+(22, 'Yuki Tsunoda', 24, 8),
+(23, 'Alexander Albon', 28, 9),
+(24, 'Zhou Guanyu', 25, 10),
+(27, 'Nico Hulkenberg', 36, 7),
+(29, 'Franco Colapinto', 21, 9),
+(31, 'Esteban Ocon', 27, 6),
+(44, 'Lewis Hamilton', 39, 4),
+(50, 'Oliver Bearman', 19, 2),
+(55, 'Carlos Sainz', 29, 2),
+(63, 'George Russell', 26, 4),
+(77, 'Valtteri Bottas', 34, 10),
+(81, 'Oscar Piastri', 23, 3);

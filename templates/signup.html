@@ -1,0 +1,82 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="container">
+  <div class="row">
+    <h1>Sign up For an Account</h1>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    {% if error %}
+    <div class="alert alert-danger">{{error}}</div>
+    {%endif%}
+    <form action="/signup.html" method="POST" class="box">
+      <div class="col-auto">
+        <label for="email" class="form-label">Email address</label>
+        <input
+          name="email"
+          type="email"
+          class="form-control"
+          id="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$"
+          placeholder="name@example.com"
+          required
+        />
+      </div>
+
+      <div class="col-auto">
+        <label for="name" class="form-label">Name</label>
+        <input
+          name="name"
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Name"
+          required
+        />
+      </div>
+
+      <div class="col-auto">
+        <label for="invite_code" class="form-label">Invite Code</label>
+        <input
+          name="invite_code"
+          type="text"
+          class="form-control"
+          id="invite_code"
+          required
+        />
+      </div>
+
+      <div class="col-auto">
+        <label for="password" class="form-label">Password</label>
+        <input
+          name="password"
+          type="password"
+          class="form-control"
+          id="password"
+          required
+        />
+      </div>
+     
+
+
+      <div class="col-auto">
+        <label for="confirm_password" class="form-label"
+          >Confirm Password</label
+        >
+        <input
+          name="confirm_password"
+          type="password"
+          class="form-control"
+          id="confirm_password"
+          required
+        />
+      </div>
+      <br />
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Submit</button>
+      </div>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    </form>
+  </div>
+</div>
+{% endblock %}
